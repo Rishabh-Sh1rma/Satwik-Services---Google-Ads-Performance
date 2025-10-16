@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Performance Report - Satwik Services</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3B82F6; /* Bright Blue */
+            --secondary-color: #60A5FA; /* Lighter Blue */
+            --bg-dark: #111827; /* Darkest Background */
+            --bg-medium: #1F2937; /* Lighter Dark for cards/sections */
+            --text-primary: #F9FAFB; /* Almost White */
+            --text-secondary: #9CA3AF; /* Medium Gray */
+            --border-color: #374151; /* Darker Gray for borders */
+            --red: #EF4444;
+            --green: #22C55E;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: var(--bg-medium);
+            color: var(--text-primary);
+            padding: 40px 20px;
+            text-align: center;
+            border-radius: var(--border-radius);
+            margin-top: 20px;
+        }
+
+        header h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        header p {
+            font-weight: 300;
+            color: var(--text-secondary);
+        }
+
+        section {
+            background: var(--bg-medium);
+            margin-top: 25px;
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        p {
+            color: var(--text-secondary);
+        }
+
+        /* --- Key Performance Indicator Grid --- */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .kpi-card {
+            background: var(--bg-dark);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            border-left: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .kpi-card .value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            color: var(--text-primary);
+        }
+        
+        .kpi-card .label {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .kpi-card .value.green { color: var(--green); }
+        .kpi-card .value.red { color: var(--red); }
+        .kpi-card.red-border { border-color: var(--red); }
+        .kpi-card.green-border { border-color: var(--green); }
+
+
+        /* --- Challenges Section --- */
+        .challenges-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        .challenge-card {
+            padding: 20px;
+            background: rgba(239, 68, 68, 0.05);
+            border-left: 5px solid var(--red);
+            border-radius: var(--border-radius);
+        }
+        .challenge-card h3 {
+            color: var(--red);
+            margin-top: 0;
+        }
+        
+        /* --- Phased Plan --- */
+        .phase {
+            border-left: 3px solid var(--secondary-color);
+            padding-left: 20px;
+            margin-bottom: 25px;
+            position: relative;
+        }
+        .phase::before {
+            content: '';
+            position: absolute;
+            left: -9px;
+            top: 0;
+            width: 15px;
+            height: 15px;
+            background: var(--bg-medium);
+            border: 3px solid var(--secondary-color);
+            border-radius: 50%;
+        }
+
+        /* --- Responsibilities Section --- */
+        .responsibilities-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+        }
+        .responsibility-card {
+            padding: 20px;
+            background-color: var(--bg-dark);
+            border-radius: var(--border-radius);
+        }
+        .responsibility-card h3 i {
+            margin-right: 10px;
+        }
+        
+        ul {
+            list-style-type: none;
+            padding-left: 5px;
+        }
+        
+        li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: bold;
+            position: absolute;
+            left: 0;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 30px;
+            font-size: 0.9rem;
+            color: #4B5563;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .challenges-grid, .responsibilities-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Google Ads Performance Review & Strategic Growth Plan</h1>
+            <p>Prepared for Satwik Services | October 16, 2025</p>
+        </header>
+
+        <!-- Section 1: Executive Summary -->
+        <section style="animation-delay: 0.1s;">
+            <h2>1. Executive Summary: What We've Achieved</h2>
+            <p>The Google Ads campaign has been a definite success in its primary goal: generating significant interest and a high volume of inbound phone calls from potential customers in Jaipur. Your ads are successfully appearing at the top of Google Search, capturing the attention of users actively looking for your services.</p>
+            <p>However, the campaign's current profitability is severely limited by two core challenges: a critical operational issue of missed calls and a lower-than-expected sales conversion rate. This report provides a realistic, phased plan to dramatically improve profitability and scale the campaign toward your growth targets.</p>
+        </section>
+
+        <!-- Section 2: Performance Deep Dive -->
+        <section style="animation-delay: 0.2s;">
+            <h2>2. Performance Deep Dive: The Real Numbers</h2>
+            <p>Here is a full breakdown of the data from the start of the campaign until now (Aug 18 - Oct 16, 2025). As your performance marketer, I generate calls; you then convert these into paying customers.</p>
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="value"><i class="fas fa-coins"></i>₹18,800</div>
+                    <div class="label">Total Ad Spend</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value"><i class="fas fa-phone-volume"></i>97</div>
+                    <div class="label">Total Calls Generated</div>
+                </div>
+                 <div class="kpi-card red-border">
+                    <div class="value red"><i class="fas fa-phone-slash"></i>59</div>
+                    <div class="label">Calls Missed (61%)</div>
+                </div>
+                <div class="kpi-card green-border">
+                    <div class="value green"><i class="fas fa-phone-alt"></i>38</div>
+                    <div class="label">Calls Answered (39%)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value"><i class="fas fa-check-circle"></i>20</div>
+                    <div class="label">Converted Leads (Calls > 20s)</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="value"><i class="fas fa-users"></i>10</div>
+                    <div class="label">New Paying Customers</div>
+                </div>
+                 <div class="kpi-card red-border">
+                    <div class="value red"><i class="fas fa-wallet"></i>₹1,880</div>
+                    <div class="label">Cost Per New Customer (CPA)</div>
+                </div>
+                <div class="kpi-card green-border">
+                    <div class="value green"><i class="fas fa-chart-line"></i>1.33x</div>
+                    <div class="label">Return on Ad Spend (ROAS)</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Core Challenges -->
+        <section style="animation-delay: 0.3s;">
+            <h2>3. The Core Challenges & Why They Matter</h2>
+            <div class="challenges-grid">
+                <div class="challenge-card">
+                    <h3><i class="fas fa-filter-circle-xmark"></i>Challenge #1: The Operational "Leaky Bucket"</h3>
+                    <p>The biggest issue is that **61% of the calls you are paying for are being missed**. We are spending money to fill a bucket with leads, but most are leaking out. Those 59 missed calls represent 59 lost opportunities, which could have translated to an additional **15 lost customers** and **₹37,500 in lost revenue**.</p>
+                </div>
+                <div class="challenge-card">
+                    <h3><i class="fas fa-crosshairs"></i>Challenge #2: The Sales Conversion Rate</h3>
+                    <p>The current data shows that of the 38 calls you answered, 10 became customers. This is a **sales conversion rate of 26%**. While this is a good start, improving this rate is key to increasing profitability and allowing us to scale the budget more aggressively and achieve your goals faster.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The Path to 50 Lakhs -->
+        <section style="animation-delay: 0.4s;">
+            <h2>4. The Path to 50 Lakhs: A Realistic, Phased Plan</h2>
+            <p>Your goal of ~334 clients per month is ambitious, but achievable over time by fixing the foundational issues and scaling intelligently. Here is our proposed plan.</p>
+            <div class="phase">
+                <h3>Phase 1: Fix the Foundation (Next 30-60 Days)</h3>
+                <p>Our immediate goal is to make the campaign highly profitable by fixing the leaks. My role is to optimize ad spend to reduce the Cost Per Lead (cost per >20s call) from its current ₹940 to under ₹500. Your team's role is to increase the Call Answer Rate to over 90% and improve the sales conversion rate.</p>
+            </div>
+            <div class="phase">
+                <h3>Phase 2: Profitable Growth (Months 3-6)</h3>
+                <p>Once the system is efficient, we can confidently scale. By increasing the budget to **₹50,000 per month**, we can aim to generate approximately **100 high-quality leads** (calls > 20s). This would translate to 30-40 new customers per month and revenue of ₹75,000 - ₹1,00,000.</p>
+            </div>
+            <div class="phase">
+                <h3>Phase 3: Aggressive Scaling (Months 7-15)</h3>
+                <p>To reach your target of 334+ clients per month, we will need to further scale the budget towards the **₹1.5 Lakh - ₹2 Lakh per month** range, but only after we have proven the model is highly profitable and your team is ready for the high volume of calls.</p>
+            </div>
+        </section>
+        
+        <!-- Section 5: Summary of Responsibilities -->
+        <section style="animation-delay: 0.5s;">
+            <h2>5. Summary of Responsibilities: Our Partnership</h2>
+            <p>Achieving this ambitious target requires a partnership where we each focus on our area of expertise.</p>
+            <div class="responsibilities-grid">
+                <div class="responsibility-card">
+                    <h3><i class="fas fa-chart-pie"></i>My Responsibility (Performance Marketer)</h3>
+                    <ul>
+                        <li>Generate a high volume of relevant phone calls at the lowest possible cost.</li>
+                        <li>Optimize ads and keywords to continuously improve lead quality.</li>
+                        <li>Provide transparent reports to make data-driven decisions together.</li>
+                    </ul>
+                </div>
+                 <div class="responsibility-card">
+                    <h3><i class="fas fa-briefcase"></i>Your Responsibility (The Business)</h3>
+                    <ul>
+                        <li>Ensure **every single phone call is answered** during business hours.</li>
+                        <li>Effectively **convert the leads** we generate into paying customers.</li>
+                        <li>Provide feedback on lead quality to help refine ad targeting.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <p>This report is based on Google Ads data from August 18, 2025, to October 16, 2025. Projections are estimates based on current performance and are subject to change.</p>
+    </footer>
+
+</body>
+</html>
+
