@@ -100,6 +100,13 @@
             margin-bottom: 10px;
             font-weight: 600;
         }
+         
+        h4 {
+             color: var(--secondary-color); /* Lighter blue for sub-sub headings */
+             margin-top: 15px;
+             margin-bottom: 5px;
+             font-weight: 600;
+        }
 
         p { color: var(--text-secondary); }
 
@@ -152,6 +159,27 @@
             border: 3px solid #60A5FA;
             border-radius: 50%;
         }
+        
+        /* New section specific styling */
+        .target-analysis {
+            background-color: var(--bg-dark);
+            padding: 25px;
+            margin-top: 20px;
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-gradient); /* Use gradient border */
+            border-image-slice: 1;
+            border-image-source: var(--primary-gradient);
+            border-left-width: 4px; /* Ensure left border width is set */
+        }
+         .target-analysis h4 {
+             /* color: var(--red); */ /* Changed from red to blue */
+             color: #60A5FA;
+             margin-top: 0;
+         }
+        .target-analysis ul li::before { color: var(--white); content: '->';} /* Keep warning icon red */
+        .month-plan { margin-top: 15px; }
+        .month-plan strong { color: var(--text-primary); }
+
 
         /* Responsibilities */
         .responsibilities-grid {
@@ -276,7 +304,6 @@
                      <div class="value">~13</div>
                     <div class="label">New Paying Customers (Est.)</div>
                 </div>
-                 <!-- CPA Removed as requested -->
                 <div class="kpi-card green">
                      <div class="value">~1.7x</div>
                     <div class="label">Overall ROAS (Est.)</div>
@@ -307,8 +334,8 @@
                     <div class="label">Cost Per Call (Oct 25-26)</div>
                 </div>
                  <div class="kpi-card green">
-                    <div class="value"><span class="highlight-green">₹20 - ₹30</span></div>
-                    <div class="label">Achieved Cost Per Lead (Est.)</div>
+                    <div class="value"><span class="highlight-green">~₹20-30</span></div> <!-- Updated CPL based on user request -->
+                    <div class="label">Achieved Cost Per Lead (Avg.)</div>
                 </div>
             </div>
             <!-- Replaced old recent stats image -->
@@ -341,7 +368,7 @@
             </div>
         </section>
 
-         <!-- NEW Section 6: Detailed Campaign Stats -->
+         <!-- Section 6: Detailed Campaign Stats -->
          <section style="animation-delay: 0.6s;">
             <h2>6. Detailed Campaign Stats (Aug 18 - Oct 27)</h2>
             <p>Here's a closer look at the campaign's performance across various dimensions:</p>
@@ -377,12 +404,14 @@
             </div>
          </section>
 
-        <!-- Section 7: The Path to 50 Lakhs (Using Provided 3-Phase Plan) -->
+        <!-- Section 7: The Path to 50 Lakhs (Including NEW 5-Month Analysis) -->
         <section style="animation-delay: 0.7s;">
             <h2>7. The Path to 50 Lakhs: A Realistic, Phased Plan</h2>
-            <p>Your goal of ~334 clients per month is ambitious, but achievable over time by fixing the foundational issues and scaling intelligently. Here is our proposed plan.</p>
+            
+            <h3>Recommended Phased Plan (12-15 Months)</h3>
+            <p>Based on stable performance and operational improvements, this remains our recommended path for sustainable growth:</p>
             <div class="phase">
-                <h3>Phase 1: Fix the Foundation (Next 30-60 Days)</h3>
+                <h3>Phase 1: Fix the Foundation (Ongoing)</h3>
                 <p>Our immediate goal is to make the campaign highly profitable by fixing the leaks. My role is to optimize ad spend to reduce the Cost Per Lead (cost per >20s call) from its current level to under ₹500. Your team's role is to increase the Call Answer Rate to over 90% and improve the sales conversion rate.</p>
             </div>
             <div class="phase">
@@ -390,23 +419,81 @@
                 <p>Once the system is efficient, we can confidently scale. By increasing the budget to **₹50,000 per month**, we can aim to generate approximately **100 high-quality leads** (calls > 20s). This would translate to 30-40 new customers per month and revenue of ₹75,000 - ₹1,00,000.</p>
             </div>
             <div class="phase">
-                <h3>Phase 3: Aggressive Scaling (Months 7-15)</h3>
+                <h3>Phase 3: Aggressive Scaling (Months 7-15+)</h3>
                 <p>To reach your target of 334+ clients per month, we will need to further scale the budget towards the **₹1.5 Lakh - ₹2 Lakh per month** range, but only after we have proven the model is highly profitable and your team is ready for the high volume of calls.</p>
             </div>
-            <!-- Replaced old projection image -->
-            <h3>Projected Growth Trajectory</h3>
+            <h3>Projected Growth Trajectory (Recommended Plan)</h3>
             <img src="https://i.ibb.co/93NzVQxF/Time-series-2025-08-18-2025-10-27.png" alt="Projected Growth Chart" class="screenshot">
+
+            <hr style="border: none; border-top: 1px solid var(--border-color); margin: 30px 0;">
+
+            <!-- NEW 5-Month Target Analysis -->
+            <div class="target-analysis">
+                <h4>Analysis: Achieving ₹50 Lakhs Goal in Next 5 Months</h4>
+                <p>Your target requires acquiring **400 new clients per month** starting immediately. Using a realistic Cost Per Lead (CPL) of **₹85** (based on overall performance, not just the hyper-efficient recent days), here is the required investment and a potential month-by-month plan:</p>
+
+                <div class="month-plan">
+                    <strong>Month 1 (Nov):</strong> <strong>Focus: Operations.</strong>
+                    <ul>
+                        <li>Goal: Fix Missed Calls (Target >90% Answer Rate) & Improve Sales Rate (Target >30%).</li>
+                        <li>Budget: Maintain current (~₹30k/month or ₹955/day).</li>
+                        <li>Expected: Stabilize operations, gather accurate conversion data. (~100-120 clients).</li>
+                    </ul>
+                </div>
+                 <div class="month-plan">
+                    <strong>Month 2 (Dec):</strong> <strong>Begin Scaling.</strong>
+                    <ul>
+                        <li>Goal: Aim for ~200 clients.</li>
+                        <li>Leads Needed (at 30% Sales Rate): ~670 leads.</li>
+                         <li>Required Budget (at ₹85 CPL): <span class="highlight-blue">~₹57,000</span> (670 * ₹85).</li>
+                    </ul>
+                </div>
+                 <div class="month-plan">
+                    <strong>Month 3 (Jan):</strong> <strong>Continue Scaling.</strong>
+                    <ul>
+                         <li>Goal: Aim for ~300 clients.</li>
+                         <li>Leads Needed (at 30% Sales Rate): ~1000 leads.</li>
+                         <li>Required Budget (at ₹85 CPL): <span class="highlight-blue">~₹85,000</span> (1000 * ₹85).</li>
+                    </ul>
+                </div>
+                 <div class="month-plan">
+                    <strong>Month 4 (Feb):</strong> <strong>Aggressive Scaling.</strong>
+                    <ul>
+                         <li>Goal: Reach 400 clients.</li>
+                         <li>Leads Needed (at 30% Sales Rate): ~1334 leads.</li>
+                         <li>Required Budget (at ₹85 CPL): <span class="highlight-blue">~₹113,400</span> (1334 * ₹85).</li>
+                    </ul>
+                </div>
+                <div class="month-plan">
+                     <strong>Month 5 (Mar):</strong> <strong>Maintain Target Level.</strong>
+                     <ul>
+                         <li>Goal: Maintain 400 clients.</li>
+                         <li>Leads Needed (at 30% Sales Rate): ~1334 leads.</li>
+                         <li>Required Budget (at ₹85 CPL): <span class="highlight-blue">~₹113,400</span> (1334 * ₹85).</li>
+                    </ul>
+                 </div>
+
+                <h4>Important Considerations & Risks</h4>
+                <ul>
+                    <li>Highly Ambitious: Reaching 400 clients/month within 5 months requires near-perfect execution and immediate operational improvements.</li>
+                     <li>Missed Calls are Critical: This plan *assumes* the missed call rate drops drastically. If calls continue to be missed at the current rate, the required budget would need to more than double, making the goal likely unachievable within this timeframe.</li>
+                     <li>Sales Conversion Rate is Key: The plan relies on improving the sales rate to at least 30%. If it remains at 25%, the required budget increases significantly.</li>
+                     <li>Campaign Learning: Each major budget increase may trigger a new learning phase, causing temporary performance dips.</li>
+                     <li>Target Marketing Limits & CPL Increase: Scaling rapidly may require broader targeting, which could increase the Cost Per Lead (CPL) above the projected ₹85.</li>
+                </ul>
+                <p><strong>Conclusion:</strong> While achieving the target in 5 months is theoretically possible with significant budget increases (ramping up to **~₹1.13 Lakh/month**), it carries substantial risks, primarily dependent on rapid and sustained improvements in your team's call handling and sales conversion rates. We strongly recommend the more conservative phased approach for predictable, profitable growth.</p>
+            </div>
         </section>
         
         <!-- Section 8: Summary of Responsibilities -->
         <section style="animation-delay: 0.8s;">
             <h2>8. Summary of Responsibilities: Our Partnership</h2>
-            <p>Achieving this level of growth requires a strong partnership:</p>
+            <p>Achieving significant growth requires a strong partnership:</p>
             <div class="responsibilities-grid">
                 <div class="responsibility-card">
-                    <h3><i class="fas fa-chart-pie"></i>My Responsibility (Performance Marketer)</h3>
+                    <h3><i class="fas fa-chart-pie"></i>Our Responsibilities </h3>
                     <ul>
-                        <li>Maintain campaign efficiency, targeting a Cost Per Lead below ₹30.</li>
+                        <li>Maintain campaign efficiency, targeting a Cost Per Lead around ₹85.</li>
                         <li>Generate a high volume of relevant phone calls within budget.</li>
                         <li>Optimize ads/keywords to improve lead quality.</li>
                         <li>Provide transparent reports for data-driven decisions.</li>
