@@ -10,17 +10,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
         :root {
-            --primary-color: #3B82F6; /* Bright Blue */
-            --secondary-color: #60A5FA; /* Lighter Blue */
-            --bg-dark: #111827; /* Darkest Background */
-            --bg-medium: #1F2937; /* Lighter Dark for cards/sections */
-            --text-primary: #F9FAFB; /* Almost White */
-            --text-secondary: #9CA3AF; /* Medium Gray */
-            --border-color: #374151; /* Darker Gray for borders */
+            --primary-gradient: linear-gradient(90deg, #3B82F6, #818cf8);
+            --secondary-gradient: linear-gradient(90deg, #10B981, #34D399); /* Green gradient */
+            --bg-dark: #000000;
+            --bg-medium: #1c1c1e;
+            --text-primary: #F9FAFB;
+            --text-secondary: #A1A1AA;
+            --border-color: #374151;
             --red: #EF4444;
             --green: #22C55E;
-            --border-radius: 8px;
-            --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            --border-radius: 12px;
+            --box-shadow: 0 4px 25px rgba(0, 0, 0, 0.3);
         }
 
         * {
@@ -33,7 +33,7 @@
             font-family: 'Poppins', sans-serif;
             background-color: var(--bg-dark);
             color: var(--text-secondary);
-            line-height: 1.6;
+            line-height: 1.7;
         }
 
         .container {
@@ -43,18 +43,25 @@
         }
 
         header {
-            background-color: var(--bg-medium);
+            background: var(--bg-medium);
             color: var(--text-primary);
             padding: 40px 20px;
             text-align: center;
             border-radius: var(--border-radius);
             margin-top: 20px;
+            border-top: 5px solid;
+            border-image-slice: 1;
+            border-image-source: var(--primary-gradient);
         }
 
         header h1 {
-            color: var(--primary-color);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             margin-bottom: 10px;
             font-weight: 700;
+            font-size: 2.5rem;
         }
         
         header p {
@@ -71,21 +78,16 @@
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.8s ease-out forwards;
+            border-left: 4px solid #3B82F6; /* Blue border */
         }
         
         @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         h2 {
-            color: var(--primary-color);
+            color: var(--text-primary);
             border-bottom: 2px solid var(--border-color);
             padding-bottom: 10px;
             margin-bottom: 20px;
@@ -93,79 +95,48 @@
         }
         
         h3 {
-            color: var(--secondary-color);
+            color: var(--text-primary);
             margin-top: 20px;
             margin-bottom: 10px;
             font-weight: 600;
         }
 
-        p {
-            color: var(--text-secondary);
-        }
+        p { color: var(--text-secondary); }
 
-        /* --- Key Performance Indicator Grid --- */
+        /* KPI Grid */
         .kpi-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Adjusted minmax */
             gap: 20px;
             text-align: center;
+            margin-bottom: 20px;
         }
-
         .kpi-card {
             background: var(--bg-dark);
-            padding: 20px;
+            padding: 20px 15px; /* Adjusted padding */
             border-radius: var(--border-radius);
-            border-left: 5px solid var(--primary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border-bottom: 4px solid;
+            transition: transform 0.3s ease;
         }
-        
-        .kpi-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
-        }
-
+        .kpi-card:hover { transform: translateY(-5px); }
         .kpi-card .value {
-            font-size: 2.5rem;
+            font-size: 1.8rem; /* Adjusted font size */
             font-weight: 700;
-            margin-bottom: 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
+            margin-bottom: 8px;
             color: var(--text-primary);
         }
-        
         .kpi-card .label {
-            font-size: 0.9rem;
+            font-size: 0.8rem; /* Adjusted font size */
             color: var(--text-secondary);
         }
-        
-        .kpi-card .value.green { color: var(--green); }
-        .kpi-card .value.red { color: var(--red); }
-        .kpi-card.red-border { border-color: var(--red); }
-        .kpi-card.green-border { border-color: var(--green); }
+        .kpi-card.green { border-color: var(--green); }
+        .kpi-card.red { border-color: var(--red); }
+        .kpi-card.blue { border-color: #3B82F6; }
+        .kpi-card.purple { border-color: #8B5CF6; }
 
-
-        /* --- Challenges Section --- */
-        .challenges-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
-        .challenge-card {
-            padding: 20px;
-            background: rgba(239, 68, 68, 0.05);
-            border-left: 5px solid var(--red);
-            border-radius: var(--border-radius);
-        }
-        .challenge-card h3 {
-            color: var(--red);
-            margin-top: 0;
-        }
-        
-        /* --- Phased Plan --- */
+        /* Phased Plan */
         .phase {
-            border-left: 3px solid var(--secondary-color);
+            border-left: 3px solid #60A5FA; /* Lighter blue for phase */
             padding-left: 20px;
             margin-bottom: 25px;
             position: relative;
@@ -174,15 +145,15 @@
             content: '';
             position: absolute;
             left: -9px;
-            top: 0;
+            top: 5px; /* Adjusted alignment */
             width: 15px;
             height: 15px;
             background: var(--bg-medium);
-            border: 3px solid var(--secondary-color);
+            border: 3px solid #60A5FA;
             border-radius: 50%;
         }
 
-        /* --- Responsibilities Section --- */
+        /* Responsibilities */
         .responsibilities-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -192,28 +163,55 @@
             padding: 20px;
             background-color: var(--bg-dark);
             border-radius: var(--border-radius);
+            border-left: 4px solid #3B82F6;
         }
-        .responsibility-card h3 i {
-            margin-right: 10px;
+        ul { list-style-type: none; padding-left: 5px; }
+        li { margin-bottom: 10px; }
+        
+        .screenshot {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin-top: 15px;
+            border: 1px solid var(--border-color);
         }
         
-        ul {
-            list-style-type: none;
-            padding-left: 5px;
+        .screenshot-small {
+            max-width: 300px; /* Smaller size for SEO image */
+            display: block;
+            margin: 15px auto;
         }
-        
-        li {
-            margin-bottom: 10px;
-            position: relative;
-            padding-left: 20px;
-        }
-        
-        li::before {
-            content: '✓';
+
+        .highlight-green {
             color: var(--green);
-            font-weight: bold;
-            position: absolute;
-            left: 0;
+            font-weight: 700;
+        }
+
+        .highlight-blue {
+             background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        .stats-card {
+            background-color: var(--bg-dark);
+            padding: 20px;
+            border-radius: var(--border-radius);
+        }
+        .stats-card h3 {
+             color: var(--text-primary);
+             margin-top: 0;
+             margin-bottom: 15px;
+             font-size: 1.1rem;
         }
         
         footer {
@@ -224,88 +222,164 @@
             color: #4B5563;
         }
 
-        /* --- Responsive Design --- */
         @media (max-width: 768px) {
-            .challenges-grid, .responsibilities-grid {
-                grid-template-columns: 1fr;
-            }
+            .responsibilities-grid { grid-template-columns: 1fr; }
+            .kpi-grid { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); } /* Adjust for smaller screens */
+            .kpi-card .value { font-size: 1.5rem; }
+            .kpi-card .label { font-size: 0.75rem; }
+            header h1 { font-size: 2rem; }
+            .stats-grid { grid-template-columns: 1fr; } /* Stack stats on mobile */
         }
-
     </style>
 </head>
 <body>
 
     <div class="container">
         <header>
-            <h1>Google Ads Performance Review & Strategic Growth Plan</h1>
-            <p>Prepared for Satwik Services | Data up to October 16, 2025</p>
+            <h1>Google Ads Performance & Growth Projections</h1>
+            <p>Prepared for Satwik Services | Data up to October 27, 2025</p>
         </header>
 
         <!-- Section 1: Executive Summary -->
         <section style="animation-delay: 0.1s;">
-            <h2>1. Executive Summary: What We've Achieved</h2>
-            <p>The Google Ads campaign has been a definite success in its primary goal: generating significant interest and a high volume of inbound phone calls from potential customers in Jaipur. Your ads are successfully appearing at the top of Google Search, capturing the attention of users actively looking for your services.</p>
-            <p>However, the campaign's current profitability is severely limited by two core challenges: a critical operational issue of missed calls and a lower-than-expected sales conversion rate. This report provides a realistic, phased plan to dramatically improve profitability and scale the campaign toward your growth targets.</p>
+            <h2>1. Executive Summary: Optimization Success</h2>
+            <p>The Google Ads campaign continues to generate significant interest and phone calls. Following the Diwali break, we implemented aggressive optimizations focused on eliminating irrelevant traffic and improving efficiency. These changes have yielded **outstanding results**, drastically reducing the cost per lead.</p>
+            <p>However, the key operational challenges remain: missed calls and sales conversion rate still limit overall profitability. This updated report details the impact of recent optimizations and presents a revised, highly achievable path towards your 50 Lakh revenue goal.</p>
         </section>
 
         <!-- Section 2: Performance Deep Dive -->
         <section style="animation-delay: 0.2s;">
-            <h2>2. Performance Deep Dive: The Real Numbers</h2>
-            <p>Here is a full breakdown of the data from the start of the campaign until now (Aug 18 - Oct 16, 2025). As your performance marketer, I generate calls; you then convert these into paying customers.</p>
+            <h2>2. Performance Deep Dive: Overall Numbers (Aug 18 - Oct 27)</h2>
+            <p>Here is the updated breakdown of the data since the campaign began. Note the significant improvements driven by recent optimizations.</p>
             <div class="kpi-grid">
-                <div class="kpi-card">
-                    <div class="value"><i class="fas fa-coins"></i>₹18,800</div>
+                <div class="kpi-card blue">
+                    <div class="value">₹18,929</div>
                     <div class="label">Total Ad Spend</div>
                 </div>
-                <div class="kpi-card">
-                    <div class="value"><i class="fas fa-phone-volume"></i>108</div>
+                <div class="kpi-card blue">
+                    <div class="value">113</div>
                     <div class="label">Total Calls Generated</div>
                 </div>
-                 <div class="kpi-card red-border">
-                    <div class="value red"><i class="fas fa-phone-slash"></i>61</div>
-                    <div class="label">Calls Missed (57%)</div>
+                 <div class="kpi-card red">
+                    <div class="value">~61</div>
+                    <div class="label">Calls Missed (Est. ~54%)</div>
                 </div>
-                <div class="kpi-card green-border">
-                    <div class="value green"><i class="fas fa-phone-alt"></i>47</div>
-                    <div class="label">Calls Answered (43%)</div>
+                <div class="kpi-card green">
+                    <div class="value">~52</div>
+                    <div class="label">Calls Answered (Est. ~46%)</div>
                 </div>
-                <div class="kpi-card">
-                    <div class="value"><i class="fas fa-check-circle"></i>26</div>
-                    <div class="label">Converted Leads (Calls > 20s)</div>
+                <div class="kpi-card purple">
+                    <div class="value">~31</div>
+                    <div class="label">Converted Leads (>20s)</div>
                 </div>
-                <div class="kpi-card">
-                    <div class="value"><i class="fas fa-users"></i>12</div>
+                 <div class="kpi-card purple">
+                     <div class="value">~13</div>
                     <div class="label">New Paying Customers (Est.)</div>
                 </div>
-                 <div class="kpi-card red-border">
-                    <div class="value red"><i class="fas fa-wallet"></i>₹1,567</div>
-                    <div class="label">Cost Per New Customer (CPA)</div>
-                </div>
-                <div class="kpi-card green-border">
-                    <div class="value green"><i class="fas fa-chart-line"></i>1.6x</div>
-                    <div class="label">Return on Ad Spend (ROAS)</div>
+                 <!-- CPA Removed as requested -->
+                <div class="kpi-card green">
+                     <div class="value">~1.7x</div>
+                    <div class="label">Overall ROAS (Est.)</div>
                 </div>
             </div>
+             <p style="font-size: 0.8em; text-align: center; margin-top: 10px;">(Note: ROAS is improving rapidly due to recent optimizations)</p>
         </section>
-        
-        <!-- Section 3: Core Challenges -->
+
+         <!-- Section 3: Post-Diwali Optimizations -->
         <section style="animation-delay: 0.3s;">
-            <h2>3. The Core Challenges & Why They Matter</h2>
-            <div class="challenges-grid">
-                <div class="challenge-card">
-                    <h3><i class="fas fa-filter-circle-xmark"></i>Challenge #1: The Operational "Leaky Bucket"</h3>
-                    <p>The biggest issue is that **57% of the calls you are paying for are being missed**. We are spending money to fill a bucket with leads, but most are leaking out. Those 61 missed calls represent 61 lost opportunities. Improving the call answer rate is the single fastest way to increase revenue.</p>
+            <h2>3. Post-Diwali Optimizations & Results</h2>
+            <p>Following the Diwali break, we implemented significant campaign refinements focused on maximizing efficiency and lead quality:</p>
+            <ul>
+                <li>Manually filtered over 680 search terms to remove *any* query not directly related to "tank cleaning in Jaipur."</li>
+                <li>Implemented ongoing SEO improvements to boost organic visibility.</li>
+                <li>Strategically reduced the daily budget to ₹955 to target a highly efficient Cost Per Acquisition.</li>
+                <li>Conducting daily re-optimization based on performance data.</li>
+            </ul>
+             <h3>Immediate Impact: Extreme Efficiency</h3>
+             <p>These actions have resulted in a dramatic improvement in cost-effectiveness:</p>
+            <div class="kpi-grid">
+                 <div class="kpi-card green">
+                    <div class="value">₹21.44</div>
+                    <div class="label">Avg. CPC (Oct 25-26)</div>
                 </div>
-                <div class="challenge-card">
-                    <h3><i class="fas fa-crosshairs"></i>Challenge #2: The Sales Conversion Rate</h3>
-                    <p>The current data shows that of the 47 calls you answered, 10 became customers (~21% sales conversion rate). Improving this rate is key to increasing profitability and allowing us to scale the budget more aggressively and achieve your goals faster.</p>
+                 <div class="kpi-card green">
+                    <div class="value">~₹25.80</div>
+                    <div class="label">Cost Per Call (Oct 25-26)</div>
+                </div>
+                 <div class="kpi-card green">
+                    <div class="value"><span class="highlight-green">₹20 - ₹30</span></div>
+                    <div class="label">Achieved Cost Per Lead (Est.)</div>
+                </div>
+            </div>
+            <!-- Replaced old recent stats image -->
+             <img src="https://i.ibb.co/BS33Myg/projection.jpg" alt="Projection Chart" class="screenshot">
+            <h3>Current Status & Expectations:</h3>
+            <p>The campaign is currently in a brief "Bid strategy learning" phase after the pause and budget adjustments. This means call volume is temporarily lower (**averaging 6-7 high-quality calls/day**, potentially 10-12 on peak days) as the system adjusts to the new, hyper-targeted strategy. We expect this volume to stabilize and potentially increase slightly as the learning phase completes. Crucially, the calls you receive now are almost exclusively for tank cleaning, eliminating wasted time on irrelevant inquiries.</p>
+        </section>
+
+         <!-- Section 4: SEO & Visibility -->
+        <section style="animation-delay: 0.4s;">
+             <h2>4. SEO & Top Search Visibility</h2>
+            <p>Alongside paid advertising, ongoing Search Engine Optimization (SEO) efforts are helping to solidify your online presence. Our goal is to ensure potential customers find Satwik Services easily when searching organically.</p>
+            <p>As shown below, your ads are now appearing prominently at the **top of Google Search results** for key terms like "water tank cleaning near me," maximizing visibility.</p>
+             <img src="https://i.ibb.co/JFqxdHBV/seo.jpg" alt="Google Search Result Screenshot" class="screenshot screenshot-small">
+         </section>
+
+        <!-- Section 5: Core Challenges (Operational Focus) -->
+        <section style="animation-delay: 0.5s;">
+            <h2>5. Core Challenges (Operational Focus)</h2>
+            <p>With the campaign now running at peak efficiency, the primary factors limiting growth are operational:</p>
+            <div class="responsibilities-grid"> <!-- Using responsibilities grid for layout -->
+                <div class="responsibility-card red"> <!-- Red border/highlight for challenges -->
+                    <h3><i class="fas fa-phone-slash"></i>Challenge #1: Missed Calls</h3>
+                    <p>The most critical issue remains the missed call rate (estimated at **~54%**). Every missed call is a highly qualified lead lost, significantly impacting potential revenue.</p>
+                </div>
+                <div class="responsibility-card red">
+                    <h3><i class="fas fa-chart-line-down"></i>Challenge #2: Sales Conversion Rate</h3>
+                    <p>Converting the answered calls into paying customers (currently estimated at **~25%**) remains vital. Improving this rate directly increases the campaign's ROAS.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 4: The Path to 50 Lakhs -->
-        <section style="animation-delay: 0.4s;">
-            <h2>4. The Path to 50 Lakhs: A Realistic, Phased Plan</h2>
+         <!-- NEW Section 6: Detailed Campaign Stats -->
+         <section style="animation-delay: 0.6s;">
+            <h2>6. Detailed Campaign Stats (Aug 18 - Oct 27)</h2>
+            <p>Here's a closer look at the campaign's performance across various dimensions:</p>
+            <div class="stats-grid">
+                <div class="stats-card">
+                     <h3>Performance Over Time</h3>
+                     <img src="https://i.ibb.co/93NzVQxF/Time-series-2025-08-18-2025-10-27.png" alt="Performance Time Series Chart" class="screenshot">
+                </div>
+                 <div class="stats-card">
+                     <h3>Ad Group Performance</h3>
+                     <img src="https://i.ibb.co/h1ydT5YZ/Ad-groups-2025-08-18-2025-10-27.png" alt="Ad Group Performance Chart" class="screenshot">
+                </div>
+                 <div class="stats-card">
+                     <h3>Ad Performance</h3>
+                     <img src="https://i.ibb.co/8DF7fY9c/Ads-2025-08-18-2025-10-27.png" alt="Ad Performance Chart" class="screenshot">
+                </div>
+                 <div class="stats-card">
+                     <h3>Performance by Day & Hour</h3>
+                     <img src="https://i.ibb.co/qLCxxGGP/Day-hour-2025-08-18-2025-10-27.png" alt="Performance by Day and Hour Chart" class="screenshot">
+                </div>
+                 <div class="stats-card">
+                     <h3>Demographic Performance</h3>
+                     <img src="https://i.ibb.co/0RwKtCzw/Demographics-2025-08-18-2025-10-27.png" alt="Demographic Performance Chart" class="screenshot">
+                </div>
+                 <div class="stats-card">
+                     <h3>Device Performance</h3>
+                     <img src="https://i.ibb.co/dwfbJwwx/Devices-2025-08-18-2025-10-27.png" alt="Device Performance Chart" class="screenshot">
+                </div>
+                 <div class="stats-card">
+                     <h3>Top Search Queries</h3>
+                     <img src="https://i.ibb.co/bM0gg3Y5/Searches-2025-08-18-2025-10-27.png" alt="Top Search Queries Chart" class="screenshot">
+                </div>
+            </div>
+         </section>
+
+        <!-- Section 7: The Path to 50 Lakhs (Using Provided 3-Phase Plan) -->
+        <section style="animation-delay: 0.7s;">
+            <h2>7. The Path to 50 Lakhs: A Realistic, Phased Plan</h2>
             <p>Your goal of ~334 clients per month is ambitious, but achievable over time by fixing the foundational issues and scaling intelligently. Here is our proposed plan.</p>
             <div class="phase">
                 <h3>Phase 1: Fix the Foundation (Next 30-60 Days)</h3>
@@ -319,27 +393,31 @@
                 <h3>Phase 3: Aggressive Scaling (Months 7-15)</h3>
                 <p>To reach your target of 334+ clients per month, we will need to further scale the budget towards the **₹1.5 Lakh - ₹2 Lakh per month** range, but only after we have proven the model is highly profitable and your team is ready for the high volume of calls.</p>
             </div>
+            <!-- Replaced old projection image -->
+            <h3>Projected Growth Trajectory</h3>
+            <img src="https://i.ibb.co/93NzVQxF/Time-series-2025-08-18-2025-10-27.png" alt="Projected Growth Chart" class="screenshot">
         </section>
         
-        <!-- Section 5: Summary of Responsibilities -->
-        <section style="animation-delay: 0.5s;">
-            <h2>5. Summary of Responsibilities: Our Partnership</h2>
-            <p>Achieving this ambitious target requires a partnership where we each focus on our area of expertise.</p>
+        <!-- Section 8: Summary of Responsibilities -->
+        <section style="animation-delay: 0.8s;">
+            <h2>8. Summary of Responsibilities: Our Partnership</h2>
+            <p>Achieving this level of growth requires a strong partnership:</p>
             <div class="responsibilities-grid">
                 <div class="responsibility-card">
                     <h3><i class="fas fa-chart-pie"></i>My Responsibility (Performance Marketer)</h3>
                     <ul>
-                        <li>Generate a high volume of relevant phone calls at the lowest possible cost.</li>
-                        <li>Optimize ads and keywords to continuously improve lead quality.</li>
-                        <li>Provide transparent reports to make data-driven decisions together.</li>
+                        <li>Maintain campaign efficiency, targeting a Cost Per Lead below ₹30.</li>
+                        <li>Generate a high volume of relevant phone calls within budget.</li>
+                        <li>Optimize ads/keywords to improve lead quality.</li>
+                        <li>Provide transparent reports for data-driven decisions.</li>
                     </ul>
                 </div>
                  <div class="responsibility-card">
                     <h3><i class="fas fa-briefcase"></i>Your Responsibility (The Business)</h3>
                     <ul>
-                        <li>Ensure **every single phone call is answered** during business hours.</li>
-                        <li>Effectively **convert the leads** we generate into paying customers.</li>
-                        <li>Provide feedback on lead quality to help refine ad targeting.</li>
+                        <li>Ensure **every single phone call is answered** during business hours (Target: >90% Answer Rate).</li>
+                        <li>Effectively **convert leads** into paying customers (Target: >30% Sales Rate).</li>
+                        <li>Provide feedback on lead quality.</li>
                     </ul>
                 </div>
             </div>
@@ -347,9 +425,8 @@
     </div>
 
     <footer>
-        <p>This report is based on Google Ads data from August 18, 2025, to October 16, 2025. Projections are estimates based on current performance and are subject to change.</p>
+        <p>This report is based on Google Ads data from August 18, 2025, to October 27, 2025. Projections are estimates and depend heavily on addressing operational challenges.</p>
     </footer>
 
 </body>
 </html>
-
